@@ -485,5 +485,109 @@ document.getElementById('cardapioModal').addEventListener('click',function(e){
   if(e.target===this)fecharCardapio();
 });
 </script>
+  <style>
+  /* Estilos do Banner de Cookies */
+  .cookie-consent-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background-color: #1a1a1a; /* Cor de fundo escura e discreta */
+    color: #f1f1f1;
+    padding: 14px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .cookie-consent-banner.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cookie-consent-banner p {
+    margin: 0;
+    flex: 1;
+  }
+
+  .cookie-consent-banner a {
+    color: #4da6ff; /* Cor do link */
+    text-decoration: underline;
+  }
+
+  .cookie-consent-banner a:hover {
+    color: #80c0ff;
+  }
+
+  .cookie-consent-btn {
+    background-color: #007bff; /* Cor do botão - ajuste se quiser */
+    color: #ffffff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+  }
+
+  .cookie-consent-btn:hover {
+    background-color: #0056b3;
+  }
+
+  /* Ajuste para telas menores (celular) */
+  @media (max-width: 600px) {
+    .cookie-consent-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      bottom: 10px;
+      padding: 12px 15px;
+    }
+    .cookie-consent-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
+
+<div id="cookieConsentBanner" class="cookie-consent-banner">
+  <p>
+    Nós utilizamos cookies para melhorar sua experiência no site. Ao continuar navegando, você concorda com a nossa 
+    <a href="politica-de-privacidade.html" target="_blank">Política de Privacidade</a>.
+  </p>
+  <button id="acceptCookieBtn" class="cookie-consent-btn">Aceitar</button>
+</div>
+
+<script>
+  // Lógica em JavaScript para salvar a aceitação do usuário
+  document.addEventListener("DOMContentLoaded", function () {
+    const banner = document.getElementById("cookieConsentBanner");
+    const acceptBtn = document.getElementById("acceptCookieBtn");
+
+    // Verifica se o usuário já aceitou os cookies anteriormente
+    if (!localStorage.getItem("cookiesAccepted")) {
+      banner.classList.add("show");
+    }
+
+    // Ação do botão Aceitar
+    acceptBtn.addEventListener("click", function () {
+      localStorage.setItem("cookiesAccepted", "true");
+      banner.classList.remove("show");
+    });
+  });
+</script>
 </body>
 </html>
