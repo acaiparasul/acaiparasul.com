@@ -572,22 +572,23 @@ document.getElementById('cardapioModal').addEventListener('click',function(e){
 </div>
 
 <script>
-  // Lógica em JavaScript para salvar a aceitação do usuário
-  document.addEventListener("DOMContentLoaded", function () {
+  (function () {
     const banner = document.getElementById("cookieConsentBanner");
     const acceptBtn = document.getElementById("acceptCookieBtn");
 
-    // Verifica se o usuário já aceitou os cookies anteriormente
+    if (!banner || !acceptBtn) return;
+
+    // Exibe o banner se o usuário ainda não aceitou
     if (!localStorage.getItem("cookiesAccepted")) {
       banner.classList.add("show");
     }
 
-    // Ação do botão Aceitar
+    // Clique no botão Aceitar
     acceptBtn.addEventListener("click", function () {
       localStorage.setItem("cookiesAccepted", "true");
       banner.classList.remove("show");
     });
-  });
+  })();
 </script>
 </body>
 </html>
